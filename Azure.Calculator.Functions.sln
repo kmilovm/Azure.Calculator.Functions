@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34601.278
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Azure.Calculator.Functions", "Azure.Calculator.Functions.csproj", "{1C290AF1-7192-40F8-B8A8-E69B83DBA19A}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{1C290AF1-7192-40F8-B8A8-E69B83DBA19A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1C290AF1-7192-40F8-B8A8-E69B83DBA19A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1C290AF1-7192-40F8-B8A8-E69B83DBA19A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1C290AF1-7192-40F8-B8A8-E69B83DBA19A}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {0F4D1BA0-861C-4645-B2D7-C87AD6F5DC0A}
+	EndGlobalSection
+EndGlobal

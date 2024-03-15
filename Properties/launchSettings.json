@@ -1,0 +1,9 @@
+{
+  "profiles": {
+    "Azure.Calculator.Functions": {
+      "commandName": "Project",
+      "commandLineArgs": "--port 7060",
+      "launchBrowser": false
+    }
+  }
+}
