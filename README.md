@@ -1,6 +1,6 @@
 # Azure Calculator
 
-This project was created as part of a technical test for Deloite
+This project was created as part of a technical test for Deloitte
 
 ## Attention
 
