@@ -1,4 +1,4 @@
-# Azure Calculatgor
+# Azure Calculator
 
 This project was created as part of a technical test for Deloite
 
