@@ -29,10 +29,10 @@ namespace Azure.Calculator.Functions.Functions
         public readonly ImmutableDictionary<string, Func<decimal, decimal, decimal>> Operations =
             new Dictionary<string, Func<decimal, decimal, decimal>>
             {
-                { "add", (a, b) => a + b },
-                { "subtract", (a, b) => a - b },
-                { "multiply", (a, b) => a * b },
-                { "divide", (a, b) => b != 0 ? a / b : throw new ArgumentException(Messages.DivideByZero) }
+                { "add", decimal.Add },
+                { "subtract", decimal.Subtract },
+                { "multiply", decimal.Multiply },
+                { "divide", (a, b) => b != 0 ? decimal.Divide(a,b) : throw new ArgumentException(Messages.DivideByZero) }
             }.ToImmutableDictionary();
 
         [FunctionName("Calculate")]
