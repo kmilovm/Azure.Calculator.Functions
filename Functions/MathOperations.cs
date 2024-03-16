@@ -10,19 +10,16 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Azure.WebJobs;
 using Microsoft.Azure.WebJobs.Extensions.Http;
-using Microsoft.Extensions.Logging;
 using Newtonsoft.Json;
 
 namespace Azure.Calculator.Functions.Functions
 {
     public class MathOperations
     {
-        private readonly ILoggerFactory _logger;
         private readonly ISignalRHelper _signalRHelper;
 
-        public MathOperations(ILoggerFactory logger, ISignalRHelper signalRHelper)
+        public MathOperations(ISignalRHelper signalRHelper)
         {
-            _logger = logger;
             _signalRHelper = signalRHelper;
         }
 
@@ -41,7 +38,7 @@ namespace Azure.Calculator.Functions.Functions
         {
             var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             var message = JsonConvert.DeserializeObject<SignalRMsg>(requestBody) ?? throw new InvalidOperationException(Messages.NoDataFromRequest);
-            string operation = message.Operation ?? HandleAndLogException<InvalidOperationException>(Messages.InvalidOperation);
+            var operation = message.Operation ?? throw new InvalidOperationException(Messages.InvalidOperation);
             var result = Operations[operation](message.Num1, message.Num2);
             await _signalRHelper.SendMessage(message.UserId, new SignalRNotification()
             {
@@ -50,12 +47,6 @@ namespace Azure.Calculator.Functions.Functions
                 UserId = message.UserId
             });
             return new OkObjectResult(result);
-        }
-
-        public dynamic HandleAndLogException<TEnt>(string message) where TEnt : Exception
-        {
-            _logger.CreateLogger<MathOperations>().LogError(message);
-            throw (TEnt)Activator.CreateInstance(typeof(TEnt), message);
         }
     }
 }
