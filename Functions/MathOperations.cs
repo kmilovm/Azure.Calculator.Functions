@@ -37,7 +37,7 @@ namespace Azure.Calculator.Functions.Functions
 
         [FunctionName("Calculate")]
         public async Task<IActionResult> Calculate(
-            [HttpTrigger(AuthorizationLevel.Function, "post", Route = null)] HttpRequest req)
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post", Route = null)] HttpRequest req)
         {
             var requestBody = await new StreamReader(req.Body).ReadToEndAsync();
             var message = JsonConvert.DeserializeObject<SignalRMsg>(requestBody) ?? throw new InvalidOperationException(Messages.NoDataFromRequest);

@@ -14,7 +14,7 @@ namespace Azure.Calculator.Functions.Functions
     {
         [FunctionName("Negotiate")]
         public static SignalRConnectionInfo Negotiate(
-            [HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequest req,
             [SignalRConnectionInfo(HubName = "calculator", UserId = "{headers.x-ms-client-principal-id}", ConnectionStringSetting = "AzureSignalRConnectionString")] SignalRConnectionInfo connectionInfo)
         {
             return connectionInfo;
@@ -23,7 +23,7 @@ namespace Azure.Calculator.Functions.Functions
         [FunctionName("SendMessage")]
 
         public static Task SendMessage(
-            [HttpTrigger(AuthorizationLevel.Function, "post")] HttpRequest req,
+            [HttpTrigger(AuthorizationLevel.Anonymous, "post")] HttpRequest req,
             [SignalR(HubName = "calculator", ConnectionStringSetting = "AzureSignalRConnectionString")] IAsyncCollector<SignalRMessage> signalRMessages)
         {
             var requestBody =  new StreamReader(req.Body).ReadToEndAsync().Result;
