@@ -27,11 +27,12 @@ namespace Azure.Calculator.Functions.Functions
             [SignalR(HubName = "calculator", ConnectionStringSetting = "AzureSignalRConnectionString")] IAsyncCollector<SignalRMessage> signalRMessages)
         {
             var requestBody =  new StreamReader(req.Body).ReadToEndAsync().Result;
-            var data = JsonConvert.DeserializeObject<dynamic>(requestBody) ?? throw new InvalidOperationException(Messages.NoDataFromRequest);
+            var data = JsonConvert.DeserializeObject<SignalRNotification>(requestBody) ?? throw new InvalidOperationException(Messages.NoDataFromRequest);
             return signalRMessages.AddAsync(
                 new SignalRMessage
                 {
-                    Target = "ReceiveMessage",
+                    Target = data.Target,
+                    UserId = data.UserId,
                     Arguments = new object[] { data.Message }
                 });
         }

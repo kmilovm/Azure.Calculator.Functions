@@ -43,7 +43,7 @@ namespace Azure.Calculator.Functions.Functions
             await _signalRHelper.SendMessage(message.UserId, new SignalRNotification()
             {
                 Message = result.ToString(CultureInfo.InvariantCulture),
-                Target = message.UserId,
+                Target = "ReceiveMessage",
                 UserId = message.UserId
             });
             return new OkObjectResult(result);
